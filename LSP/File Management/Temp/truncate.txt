@@ -1,0 +1,14 @@
+36. Write a C program to read and display the first 10 lines of a file named "log.txt"? 
+37. Develop a C program to read data from a text file named "input.txt" and write it to 
+another file named "output.txt" in reverse order? 
+38. Implement a C program to create a new directory named with the current date in the 
+format "YYYY-MM-DD"? 
+39. Write a C program to read and display the contents of a binary file named "binary.bin"? 
+40. Develop a C program to get the size of the largest file in a directory? 
+41. Implement a C program to check if a file named "data.txt" is readable? 
+42. Write a C program to create a new directory named "Logs" and move all files with the 
+".log" extension into it? 
+43. Develop a C program to check if a file named "config.ini" is writable? 
+44. Implement a C program to read the contents of a text file named "instructions.txt" and 
+execute the instructions as shell commands? 
+45. Write a C program to get the number of hard links to a file named "file.txt"?
