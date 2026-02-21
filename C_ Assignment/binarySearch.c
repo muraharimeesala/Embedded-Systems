@@ -7,7 +7,7 @@ int main(){
 	for(i=0;i<n;i++){
 		scanf("%d",&arr[i]);
 	}
-	printf("Enter value to search:");
+	prifsntf("Enter value to search:");
 	scanf("%d",&key);
 	int low=0;
 	int high=n-1;

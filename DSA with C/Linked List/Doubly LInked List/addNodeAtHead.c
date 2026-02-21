@@ -1,52 +1,55 @@
-#include<stdio.h>
-#include<stdlib.h>
-struct Node{
-int data;
-struct Node *prev;
-struct Node *nxt;
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+    int data;
+    struct Node *nxt;
+    struct Node *prev;
 };
-struct Node *head,*tail;
-struct Node *createNode(int data){
-struct Node *pnew=(struct Node*)malloc(sizeof(struct Node));
-if(!pnew){
-printf("Failed to allocate memory\n");
-}
-else{
-pnew->data=data;
-pnew->prev=NULL;
-pnew->nxt=NULL;
-}
-return pnew;
-}
-void insertAtHead(struct Node **head,int data){
-    struct Node *pnew=createNode(data);
-    if(*head==NULL){
-        *head=tail=pnew;
+/* Insert node at beginning */
+void insertAtBeginning(struct Node **head,int data) {
+    struct Node *pnew=(struct Node*)malloc(sizeof(struct Node));
+    if(pnew==NULL) {
+        printf("Memory allocation failed\n");
+        return;
     }
-    else{
+    pnew->data=data;
+    pnew->prev=NULL;
+    pnew->nxt=*head;
+    if(*head!=NULL) {
         (*head)->prev=pnew;
-        pnew->nxt=*head;
-        *head=pnew;
     }
+    *head=pnew;
 }
-void display(struct Node *head){
-struct Node *temp=head;
-while(temp!=NULL){
-printf("%d->",temp->data);
-temp=temp->nxt;
+/* Display list */
+void displayList(struct Node *head) {
+    if(head==NULL) {
+        printf("List is empty\n");
+        return;
+    }
+    struct Node *temp=head;
+    while (temp!=NULL) {
+        printf("%d<->",temp->data);
+        temp=temp->nxt;
+    }
+    printf("NULL\n");
 }
-printf("NULL\n");
-}
-int main(){
-    int n,data,i;
-    printf("enter size of node: ");
+int main() {
+    struct Node *head=NULL;
+    int n,i,data,newData;
+    printf("Enter number of nodes: ");
     scanf("%d",&n);
-    for(i=0;i<n;i++){
-        printf("Enter data for node %d: ",i);
+    printf("Enter %d node values:\n",n);
+    for (i=0;i<n;i++){
         scanf("%d",&data);
-    insertAtHead(&head,data);
+        insertAtBeginning(&head,data);
     }
-    printf("Linked List: ");
-    display(head);
+    printf("\nOriginal List:\n");
+    displayList(head);
+    printf("\nEnter value to insert at beginning: ");
+    scanf("%d",&newData);
+    insertAtBeginning(&head,newData);
+    printf("\nUpdated List:\n");
+    displayList(head);
+    return 0;
 }
 

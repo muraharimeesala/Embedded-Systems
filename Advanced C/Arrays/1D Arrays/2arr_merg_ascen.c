@@ -1,38 +1,38 @@
 #include<stdio.h>
 int main(){
-	int arr1[100],arr2[100],merg[100];
-	int i,j,n1,n2,temp;
-	printf("Enter first array size:");
-	scanf("%d",&n1);
-	printf("Enter %d elements:\n",n1);
-	for(i=0;i<n1;i++){
-		scanf("%d",&arr1[i]);
-	}
-	printf("Enter second array size:");
-	scanf("%d",&n2);
-	printf("Enter %d elements:\n",n1);
-	for(i=0;i<n2;i++){
-		scanf("%d",&arr2[i]);
-	}
-	for(i=0;i<n1;i++){
-		merg[i]=arr1[i];
-	}
-	for(j=0;j<n2;j++){
-		merg[i+j]=arr2[j];
-	}
-	int total=n1+n2;
-	for(i=0;i<total-1;i++){
-		for(j=0;j<total-i-1;j++){
-			if(merg[j]>merg[j+1]){
-				temp=merg[j];
-				merg[j]=merg[j+1];
-				merg[j+1]=temp;
-			}
-		}
-	}
-	printf("After concatenated and sorting the array ascending:\n");
-	for(i=0;i<total;i++){
-		printf("%d ",merg[i]);
-	}
+        int n,m,i,j,k,a[100],b[100],c[100];
+        printf("Enter size first array:");
+        scanf("%d",&n);
+        printf("Enter %d elements first array:\n",n);
+        for(i=0;i<n;i++){
+                scanf("%d",&a[i]);
+        }
+        printf("Enter size second array:");
+        scanf("%d",&m);
+        printf("Enter %d elements first array:\n",m);
+        for(i=0;i<m;i++){
+                scanf("%d",&b[i]);
+        }
+        i=0;
+        j=0;
+        k=0;
+        while(i<n && j<m){
+                if(a[i]<b[j]){
+                        c[k++]=a[i++];
+                }
+                else{
+                        c[k++]=b[j++];
+                }
+        }
+        while(i<n){
+                c[k++]=a[i++];
+        }
+        while(j<m){
+                c[k++]=b[j++];
+        }
+        printf("Merged Array:\n");
+        for(i=0;i<k;i++){
+                printf("%d ",c[i]);
+        }
 }
 

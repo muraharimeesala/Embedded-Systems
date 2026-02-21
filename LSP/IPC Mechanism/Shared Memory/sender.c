@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<sys/ipc.h>
+#include<sys/shm.h>
+int main(){
+	char *str;
+	key_t key;
+	int shmid;
+	key=ftok("shmfile",65);
+	shmid=shmget(key,4096,IPC_CREAT|0666);
+	if(shmid==-1){
+		perror("shmget");
+		exit(EXIT_FAILURE);
+	}
+	str=shmat(shmid,NULL,0);
+	if(str==(char*)-1){
+		perror("shmat");
+		exit(EXIT_FAILURE);
+	}
+	printf("Enter data to write:\n");
+	fgets(str,4096,stdin);
+	str[strcspn(str,"\n")]='\0';
+	printf("Data written in shared memory.\n");
+	shmdt(str);
+}
+
