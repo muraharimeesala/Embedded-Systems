@@ -1,0 +1,1 @@
+savedcmd_charDriver.ko := ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T /usr/src/linux-headers-6.17.0-19-generic/scripts/module.lds -o charDriver.ko charDriver.o charDriver.mod.o .module-common.o
