@@ -4,11 +4,14 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/uaccess.h>
+#include <linux/wait.h>
 
 #define MAJOR_NUM 42
 #define MINOR_NUM 0
 #define DEV_NAME  "mychrmod"
 #define DEV_NUMS  1
+
+DECLARE_WAIT_QUEUE_HEAD(wq);
 
 // Function prototypes
 static int dev_open(struct inode *, struct file *);
@@ -90,6 +93,8 @@ static int dev_release(struct inode *inode, struct file *file)
 static ssize_t dev_read(struct file *file, char __user *buff, size_t count, loff_t *offset)
 {
     mydev_t *dev = file->private_data;
+    
+    wait_event(wq, dev->noofbytes > 0);
 
     printk("Read requested: %zu bytes\n", count);
 
@@ -119,6 +124,7 @@ static ssize_t dev_write(struct file *file, const char __user *buff, size_t coun
         return -EFAULT;
 
     dev->noofbytes = count;
+    wake_up(&wq);
 
     return count;
 }

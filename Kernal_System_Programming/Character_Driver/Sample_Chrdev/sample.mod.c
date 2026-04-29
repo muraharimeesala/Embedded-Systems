@@ -21,17 +21,9 @@ __used __section("__versions") = {
 	{ 0x0bc5fb0d, "unregister_chrdev_region" },
 	{ 0x546c19d9, "validate_usercopy_range" },
 	{ 0xa61fd7aa, "__check_object_size" },
-	{ 0x092a35a2, "_copy_from_user" },
-	{ 0x16ab4215, "__wake_up" },
-	{ 0xbd03ed67, "__ref_stack_chk_guard" },
-	{ 0x7851be11, "__SCT__might_resched" },
 	{ 0x092a35a2, "_copy_to_user" },
-	{ 0x7a5ffe84, "init_wait_entry" },
-	{ 0xd272d446, "schedule" },
-	{ 0x0db8d68d, "prepare_to_wait_event" },
-	{ 0xc87f4bab, "finish_wait" },
-	{ 0xd272d446, "__stack_chk_fail" },
 	{ 0x4e54d6ac, "cdev_del" },
+	{ 0x092a35a2, "_copy_from_user" },
 	{ 0xd272d446, "__fentry__" },
 	{ 0xe8213e80, "_printk" },
 	{ 0xd272d446, "__x86_return_thunk" },
@@ -47,16 +39,8 @@ __used __section("__version_ext_crcs") = {
 	0x546c19d9,
 	0xa61fd7aa,
 	0x092a35a2,
-	0x16ab4215,
-	0xbd03ed67,
-	0x7851be11,
-	0x092a35a2,
-	0x7a5ffe84,
-	0xd272d446,
-	0x0db8d68d,
-	0xc87f4bab,
-	0xd272d446,
 	0x4e54d6ac,
+	0x092a35a2,
 	0xd272d446,
 	0xe8213e80,
 	0xd272d446,
@@ -70,17 +54,9 @@ __used __section("__version_ext_names") =
 	"unregister_chrdev_region\0"
 	"validate_usercopy_range\0"
 	"__check_object_size\0"
-	"_copy_from_user\0"
-	"__wake_up\0"
-	"__ref_stack_chk_guard\0"
-	"__SCT__might_resched\0"
 	"_copy_to_user\0"
-	"init_wait_entry\0"
-	"schedule\0"
-	"prepare_to_wait_event\0"
-	"finish_wait\0"
-	"__stack_chk_fail\0"
 	"cdev_del\0"
+	"_copy_from_user\0"
 	"__fentry__\0"
 	"_printk\0"
 	"__x86_return_thunk\0"
@@ -93,4 +69,4 @@ __used __section("__version_ext_names") =
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "894F5EC69A0B7EBEAB578D3");
+MODULE_INFO(srcversion, "AA2B22E4E3B17E0A731F43E");

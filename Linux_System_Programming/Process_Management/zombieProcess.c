@@ -10,6 +10,6 @@ int main(){
 	}
 	else {
 		printf("Parent Sleeping..\n");
-		sleep(30);
+		sleep(5);
 	}
 }

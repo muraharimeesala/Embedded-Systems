@@ -5,13 +5,13 @@ int main()
 {
 	pid_t pid;
 	pid=fork();
-	if(pid==0){
-		exit(1);
-		//sleep(5);
-		printf("child process: PPID=%d\n",getppid());
+	if(pid>0){
+		printf("Parent exiting\n");
+		return 0;
 	}
 	else{
-		printf("parent exit\n");
+		sleep(5);
+		printf("Child running And New PID: %d\n",getppid());
 	}
 	return 0;
 }
