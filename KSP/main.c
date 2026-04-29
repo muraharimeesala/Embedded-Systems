@@ -1,4 +1,4 @@
 #include<stdio.h>
 int main(){
-	print_hello();
+	printf("Value:%d\n",(10++));
 }

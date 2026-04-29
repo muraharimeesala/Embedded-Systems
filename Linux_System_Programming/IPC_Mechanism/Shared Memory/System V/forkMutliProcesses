@@ -1,0 +1,52 @@
+// Create a program that forks multiple processes, and each process communicates using shared memory
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+#define NUM_CHLD 3
+#define SHM_SIZE 1024
+
+int main(){
+    key_t key;
+    int shmid;
+    char *shm;
+    pid_t pid;
+    int i;
+
+    key =ftok("sharefile",65);
+    if(key == -1){
+        perror("ftok");
+        exit(1);
+    }
+    shmid=shmget(key,SHM_SIZE,0666|IPC_CREAT);
+    if(shmid == -1){
+        perror("shmget");
+        exit(1);
+    }
+
+    shm=shmat(shmid,NULL,0);
+    if(shm == (char *)-1){
+        perror("shmat");
+        exit(1);
+    }
+    printf("Enter Messages For Child Processes:\n");
+    fgets(shm,SHM_SIZE,stdin);
+    for(i=0;i<NUM_CHLD;i++){
+        pid=fork();
+        if(pid == 0){
+            printf("Child %d PID: %d Received: %s\n",i,getpid(),shm);
+            exit(0);
+        }
+    }
+    for(i=0;i<NUM_CHLD;i++){
+        wait(NULL);
+    }
+    shmdt(shm);
+    shmctl(shmid,IPC_RMID,NULL);
+    return 0;
+}
